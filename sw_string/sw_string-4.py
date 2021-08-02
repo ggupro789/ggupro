@@ -8,16 +8,16 @@ from typing import Collection, Deque
 
 test_case= int(input())
 
-def palindrome(s:str):
+def palindrome(s:str):   
     strs:Deque = collections.deque()
     for char in s:
         strs.append(char)
 
     while len(strs)>1:
-        if strs.popleft() != strs.pop():
-            return False
+        if strs.popleft() == strs.pop():
+            return True
     
-    return True
+    return False
 
 for i in range(test_case):
     NM = list(map(int,input().split()))
@@ -34,6 +34,10 @@ for i in range(test_case):
 
         str2.append(temp)
     
-    
-    
-    
+    for g in str:
+        if(palindrome(g)):
+            print("#{0} {1}".format(i+1,g))
+            
+    for p in str2:
+        if(palindrome(p)):
+            print("#{0} {1}".format(i+1,p))
