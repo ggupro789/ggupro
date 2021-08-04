@@ -1,54 +1,38 @@
 # 토마토
 import collections
 
-def bfs(tomato1):
-    # deq = collections.deque()
+def bfs(deq:collections.deque):
+    dr = [0,0,-1,1]
+    dc = [-1,1,0,0]
+    day = 0
+    while len(deq) > 0:
+        row, col = deq.popleft()
 
-    # for first1 in range(len(tomato1)):
-    #     deq.append((tomato1[first1]))
-    #     visited[tomato1[first1][0]][tomato1[first1][1]] = 1
+        for i in range(4):
+            nr = row + dr[i]
+            nc = col + dc[i]
 
-    # count = 0
-
-    # dr = [0,0,-1,1]
-    # dc = [-1,1,0,0]
-
-    # while len(deq) > 0:
-    #     list = deq.popleft()
-
-    #     for _ in range(len(deq)):
-    #         list = deq.popleft()
-    #         print(row,col)
-    #         for i in range(4):
-    #             nr = row + dr[i]
-    #             nc = col + dc[i]
-
-    #             if 0 <= nr < N and 0<= nc < M:
-    #                 if visited[nr][nc] == 0:
-    #                     visited[nr][nc] = 1
-    #                     deq.append((nr,nc))
-        
-        
-
-    for i in range(N):
-        if 0 in map_list[i]:
-            return -1
-        else:
-            return count
+            if 0 <= nr < N and 0 <= nc < M and map_list[nr][nc] == 0:
+                deq.append((nr,nc))
+                map_list[nr][nc] = map_list[row][col] + 1
+    
+    for r in map_list:
+        for c in r:
+            if c == 0:
+                print(-1)
+                exit()
+        day = max(map(max,map_list))-1
+    
+    return day
 
 M,N = map(int,input().split())
 
 map_list = [list(map(int,input().split())) for _ in range(N)]
-visited = [[0 for _ in range(M)] for _ in range(N)]
-tomato1 = []
+deq = collections.deque()
 
 for row in range(N):
     for col in range(M):
         if map_list[row][col] == 1:
-            tomato1.append([row,col])
+            deq.append((row,col))
 
-result = bfs(tomato1)
-print(result)
-
-
-
+print(bfs(deq))
