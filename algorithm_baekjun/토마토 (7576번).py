@@ -21,7 +21,7 @@ def bfs(deq:collections.deque):
             if c == 0:
                 print(-1)
                 exit()
-        day = max(map(max,map_list))-1
+    day = max(map(max,map_list))-1
     
     return day
 
