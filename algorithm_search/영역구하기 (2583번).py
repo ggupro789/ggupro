@@ -1,14 +1,12 @@
 def dfs(row,col,visited,count):
     visited[row][col] = 1
+    dr = [0,0,-1,1]
+    dc = [-1,1,0,0]
 
-    for i in range(N):
-        for j in range(M):
-            if visited[i][j] == 0:
-                if map_list[i][j] == 0:
-                    count += 1
-                    visited = dfs(i,j,visited,count)
-
-    return count
+    for i in range(4):
+        nr = row + dr[i]
+        nc = col + dc[i]
+        
     
 M,N,K = map(int,input().split())
 
@@ -28,6 +26,6 @@ for row in range(N):
     for col in range(M):
         if map_list[row][col] == 0:
             if visited[row][col] == 0:
-                dfs(row,col,visited)
+                dfs(row,col,visited,0)
                 area += 1
 print(count)
