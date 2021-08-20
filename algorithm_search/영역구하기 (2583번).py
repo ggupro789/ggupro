@@ -2,7 +2,7 @@ def dfs(row,col,visited):
     global count
 
     visited[row][col] = 1
-    count += 1
+    count = 1
     stack = [(row,col)]
 
     dr = [0,0,-1,1]
@@ -17,8 +17,9 @@ def dfs(row,col,visited):
 
             if 0<= nr < M and 0 <= nc <N:
                 if visited[nr][nc] == 0 and map_list[nr][nc] == 0:
-                    visited = dfs(nr,nc,visited)
-    
+                    visited[nr][nc] = 1
+                    stack.append((nr,nc))
+                    count += 1   
     return visited
 
 
