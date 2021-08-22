@@ -38,8 +38,8 @@ for test_case in range(1, T+1):
         # VISITED 나중에
         if visited[n][0] == False:
             res = bfs(n)
-                if res == 'NO':
-                    result = 'NO'
-                    break
+            if res == 'NO':
+                result = 'NO'
+                break
     
     print(result)

@@ -1,7 +1,7 @@
 def dfsarea(row,col):
   stack = []
   stack.append((row,col))
-
+  visitedArea[row][col] = True
   while len(stack)>0:
     row,col = stack.pop()
 
@@ -20,7 +20,7 @@ def dfsarea(row,col):
 def dfs0(row,col):
   stack = []
   stack.append((row,col))
-
+  visited0[row][col] = True
   while len(stack)>0:
     row,col = stack.pop()
 
@@ -34,9 +34,10 @@ def dfs0(row,col):
             map_list[nr][nc] -= 1
             if map_list[nr][nc] == 0:
               visited0[nr][nc] = True
-
+              print(visited0)
           elif map_list[nr][nc] == 0:
             visited0[nr][nc] = True
+            print(visited0)
             stack.append((nr,nc))
   
   return visited0
