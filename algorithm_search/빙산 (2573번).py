@@ -34,10 +34,9 @@ def dfs0(row,col):
             map_list[nr][nc] -= 1
             if map_list[nr][nc] == 0:
               visited0[nr][nc] = True
-              print(visited0)
+              
           elif map_list[nr][nc] == 0:
             visited0[nr][nc] = True
-            print(visited0)
             stack.append((nr,nc))
   
   return visited0
