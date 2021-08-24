@@ -1,9 +1,13 @@
 def my_combination(list, k, r, target):
-
+    global result
     if len(target) == r:
         #탈출
         re = ''.join(target)
-        return re
+        if re in result.keys():
+          result[re] += 1
+        else:
+          result[re] = 1
+        return
 
     if k >= len(list): #  k의 역활 이해
         return
@@ -12,19 +16,18 @@ def my_combination(list, k, r, target):
     my_combination(list,k+1,r,target+[list[k]])
 
 def solution(orders, course):
-    answer = []
+    global result
+    answers = []
     for number in course:
         result = {}
         for order in orders:
-            x=''
-            x = my_combination(list(map(str,order)),0,number,[])
-            if x in result:
-                result[x] += 1
-            else:
-                result[x] =1
-        
-        answer.append(k for k,v in result.items() if max(result.values()) == v) 
-    
+            my_combination(sorted(list(map(str,order))),0,number,[])
+        if len(result.keys()) >= 2:
+          x = [k for k,v in result.items() if max(result.values()) == v and v >= 2]
+          for i in x:
+            answers.append(i)
+
+    answer = sorted(answers)
     return answer
 
-print(solution(["ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"],[2,3,4]))
+result = {}
