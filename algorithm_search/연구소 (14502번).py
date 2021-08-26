@@ -1,5 +1,4 @@
 import collections
-import copy
 
 def bfs(row,col,list):
     global map_list
@@ -34,8 +33,9 @@ def my_combination(start,target):
 
     count0 = 0
     if target == 3:
-        #탈출
-        map_list2 = copy.deepcopy(map_list)
+        #탈출 a = [item[:] for item in map_list]
+        map_list2 = [item[:] for item in map_list]
+        # copy.deepcopy(map_list)
         for row in range(N):
             for col in range(M):
                 if map_list[row][col] == 2 :
@@ -50,8 +50,8 @@ def my_combination(start,target):
         
         return
         
-    for i in range(start,N*M): # 2 차원 배열 조합 할때 필수
-        row = i // M
+    for i in range(start,N*M): #  ******* 2 차원 배열 조합 할때 필수
+        row = i // M    
         col = i % M
         if map_list[row][col] == 0:
             map_list[row][col] = 1
@@ -63,6 +63,5 @@ map_list = [list(map(int,input().split())) for _ in range(N)]
 count = 0
 
 my_combination(0,0)
-
 print(count)
 
