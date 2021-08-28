@@ -6,7 +6,7 @@ def bfs():
     deq.append((0,0,1))
     visited = [[[0,0] for _ in range(M)] for _ in range(N)]    
     visited[0][0][1] = 1
-    print(visited)
+    
     dr = [0,0,-1,1]
     dc = [-1,1,0,0]
 
@@ -14,6 +14,7 @@ def bfs():
         row,col,wall= deq.popleft()
 
         if row == N-1 and col == M-1:
+            print(visited)
             return visited[row][col][wall]
 
         for i in range(4):
