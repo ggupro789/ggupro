@@ -1,37 +1,69 @@
 import collections
 
-def bfs(row,col,list:list):
-    deq = collections.deque()
-    deq.append((row,col))
+def kill(target:list,game_map:list):
+    kill_point = 0
+    hmm = 0
+    while True:
+        game_set = 0
 
-    game_map = [item[:] for item in list]
-    dr = [0,0,-1,1]
-    dc = [-1,1,0,0]
+        for row in range(N):
+            for col in range(M):
+                if game_map[row][col] == 1:
+                    game_set += 1
+        
+        if game_set == 0:
+            break
 
-    while list.count(1)>0:
-        for c in game_map[N]:
+        for i in target:
+            count = 0
+            cut = 100000
+            r,c = 0,0
+            for row in range(N):
+                for col in range(M):   
+                    if game_map[row][col] == 1 or game_map[row][col] == 3:
+                        if D+hmm >= (abs(N-row) + abs(i-col)):
+                            gimoring = (abs(N-row) + abs(i-col))
+                            if cut > gimoring:
+                                cut = gimoring
+                                r,c = row,col
 
-            for i in range(4):
-                nr = row + dr[i]
-                nc = row + dc[i]
+                            if cut == gimoring:
+                                if c > col:
+                                    r,c = row,col
+            if cut != 100000:
+                game_map[r][c] = 3
+            
 
-                if c == 2:
-                    if N-D <= nr < N and 0 <= nc <= M:
-                        if game_map[nr][nc] == 1:
-                            if 
-                             
+                            
+        for row in range(N):
+            for col in range(M):
+                if game_map[row][col] == 3:
+                    kill_point += 1
+                    game_map[row][col] = 0
+        
+        game_map[N-1-hmm] = [0 for _ in range(M)]
+
+        hmm += 1
+
+    
+    return kill_point
 
 
 def my_combination(list, k, r,target):
-    if len(target) == r:
-        row_list = [0 for _ in range(M)]
-        game_map = [item[:] for item in map_list]
-        for i in target:
-            row_list[i] = 2
+    global count
 
-        game_map.append(row_list)
-        bfs()
+    if len(target) == r:
+        # row_list = [0 for _ in range(M)]
+
+        game_map = [item[:] for item in map_list]
+        countre = 0
+
         
+        countre = kill(target,game_map)
+
+        if count < countre:
+            count = countre
+           
         return
 
     if k > M-1: #  k의 역활 이해
@@ -44,4 +76,8 @@ def my_combination(list, k, r,target):
 N,M,D = map(int,input().split())
 
 map_list = [list(map(int,input().split())) for _ in range(N)]
+count = 0
 my_combination([i for i in range(M)],0,3,[])
+
+
+print(count)
