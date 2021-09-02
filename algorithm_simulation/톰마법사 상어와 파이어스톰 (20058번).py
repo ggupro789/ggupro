@@ -68,8 +68,8 @@ while len(L) > 0:
                 if visited[row][col] == False:
                     ice_k = bfs(row,col)
 
-            if ice_dong < ice_k:
-                ice_dong = ice_k
+            # if ice_dong < ice_k:
+            #     ice_dong = ice_k
     
     for row in range(map_count):
         for col in range(map_count):
