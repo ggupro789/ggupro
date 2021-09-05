@@ -33,8 +33,8 @@ def bfs(row,col):
                             break
     
     while len(memo_X) > 0:
-        r1,c1 = r,c
-        path
+        memo_X.append(r,c)
+        
         
                 
 
@@ -43,7 +43,7 @@ N,M = map(int,input().split())
 map_list = [list(input()) for _ in range(M)]
 visited = [[False for _ in range(N)] for _ in range(M)]
 path = [[[] for _ in range(N)] for _ in range(M)]
-memo_X = []
+memo_X = [(0,0)]
 
 count_X = 0
 for row in range(M):
@@ -57,6 +57,6 @@ for row in range(M):
         if visited[row][col] == False:
             if map_list[row][col] == 'S':
                 bfs(row,col)
-print(path)
+# print(path)
 print(memo_X)
 print(r,c)
