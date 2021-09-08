@@ -1,57 +1,70 @@
 import collections
 
 def bfs(row,col,x_list):
-
     deq = collections.deque()
     deq.append((row,col))
     visited = [[False for _ in range(N)] for _ in range(M)]
-    visited[row][col] = True
-    rr,cc = row,col
+    path = [[[] for _ in range(N)] for _ in range(M)]
+    index = 0
+    count = 0
+
+    s_r,s_c = row,col
+
     dr = [0,0,-1,1]
     dc = [-1,1,0,0]
 
-    count = 0
-    index = 0
-
-    while index < len(x_list):
+    while len(deq) > 0:
         row,col = deq.popleft()
-        
+
         for i in range(4):
             nr = row + dr[i]
             nc = col + dc[i]
 
             if 0 <= nr < M and 0 <= nc < N:
-                if map_list[nr][nc] != '#':
-                    if visited[nr][nc] == False:
-                        visited[nr][nc] = True
-                        deq.append((nr,nc))
-                        path[nr][nc].append((row,col))
+                if visited[nr][nc] == False:
+                    visited[nr][nc] = True
+                    deq.append((nr,nc))
+                    path[nr][nc] = row,col
 
-                        if map_list[nr][nc] == x_list[index]:
-                            deq.clear()
-                            deq.append((nr,nc))
-                            visited = [[False for _ in range(N)] for _ in range(M)]
-                            r,c = x_list[index]
-                            index += 1
-                            
-                            while a != rr and b != cc:
-                                a,b = path[r][c]
-                                r,c = a,b
+                    if index != len(x_list)-1:
+                        if nr == x_list[index][0] and nc == x_list[index][1]:
+                            a,b = 0, 0
+                            while a != s_r and b != s_c:
+                                a,b = path[nr][nc]
+                                nr,nc = a,b
                                 count += 1
+
                             
-                            rr,cc = nr,nc
-                            continue
-    print(count)
+                            index += 1
+                            s_r,s_c = x_list[index][0],x_list[index][1] 
+                            visited = [[False for _ in range(N)] for _ in range(M)]
+                            deq.clear()
+                            deq.append((x_list[index]))
+                        
+                            break
+                    
 
-
+                    elif index == len(x_list)-1:
+                        if nr == e_row and nc == e_col:
+                            a,b = 0,0
+                            while a != e_row and b != e_col:
+                                a,b = path[nr][nc]
+                                nr,nc = a,b
+                                count += 1
+    
+    return count
 
 
 #------------------------------------------
 def my_permutations(list,r,target):
+    global count1
     #탈출조건
     if len(target) == r:
         # 결과를 수행하라
-        bfs(s_row,s_col,target)
+        
+        count_x = bfs(s_row,s_col,target)
+        if count1 > count_x:
+            count1 = count_x
         return
 
     for i in range(len(list)):
@@ -82,5 +95,7 @@ for row in range(M):
             e_row,e_col = row,col
 # print(path)
 visited_x = [False for _ in range(len(memo_X))]
+count1 = 100000
 
 my_permutations(memo_X,len(memo_X),[])
+print(count1)
