@@ -22,35 +22,38 @@ def bfs(row,col,x_list):
 
             if 0 <= nr < M and 0 <= nc < N:
                 if visited[nr][nc] == False:
-                    visited[nr][nc] = True
-                    deq.append((nr,nc))
-                    path[nr][nc] = row,col
+                    if map_list[nr][nc] != '#':
+                        visited[nr][nc] = True
+                        deq.append((nr,nc))
+                        path[nr][nc] = row,col
 
-                    if index != len(x_list)-1:
-                        if nr == x_list[index][0] and nc == x_list[index][1]:
-                            a,b = 0, 0
-                            while a != s_r and b != s_c:
-                                a,b = path[nr][nc]
-                                nr,nc = a,b
-                                count += 1
+                        if index != len(x_list):
+                            if nr == x_list[index][0] and nc == x_list[index][1]:
+                                a,b = 0, 0
+                                deq.clear()
+                                deq.append((nr,nc))
+                                
+                                while a != s_r or b != s_c:
+                                    a,b = path[nr][nc]
+                                    nr,nc = a,b
+                                    count += 1
 
+                                
+
+                                index += 1
+                                s_r,s_c = x_list[index-1][0],x_list[index-1][1] 
+                                visited = [[False for _ in range(N)] for _ in range(M)]
                             
-                            index += 1
-                            s_r,s_c = x_list[index][0],x_list[index][1] 
-                            visited = [[False for _ in range(N)] for _ in range(M)]
-                            deq.clear()
-                            deq.append((x_list[index]))
+                                break
                         
-                            break
-                    
 
-                    elif index == len(x_list)-1:
-                        if nr == e_row and nc == e_col:
-                            a,b = 0,0
-                            while a != e_row and b != e_col:
-                                a,b = path[nr][nc]
-                                nr,nc = a,b
-                                count += 1
+                        elif index == len(x_list):
+                            if nr == e_row and nc == e_col:
+                                a,b = 0,0
+                                while a != x_list[-1][0] or b != x_list[-1][1]:
+                                    a,b = path[nr][nc]
+                                    nr,nc = a,b
+                                    count += 1
     
     return count
 
