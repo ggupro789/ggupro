@@ -13,18 +13,22 @@ import heapq
 
 N = int(input())
 map_list = []
+noodle_list = []
 index = 1
 result = 0
 
 for i in range(N):
     deadline,noodle = map(int,input().split())
     map_list.append((deadline,noodle,i))
-
+    noodle_list.append((noodle))
 print(map_list)
 visited = [False for _ in range(N)]
 
-heapq.heapify(map_list)
+heapq.heapify(noodle_list)
+
+
 
 for i in range(N):
-    dd,bb,cc = heapq.heappop(map_list)
+    a = heapq.heappop(noodle_list)
+    print(a)
 
