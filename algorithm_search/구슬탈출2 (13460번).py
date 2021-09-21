@@ -24,7 +24,7 @@ def bfs():
             ncB = colB + dc[i]
 
             if 0 < nrR < N and 0 < ncR < M:
-                if 
+                if map_list[nrR][ncR] != '#':
 
 
 
