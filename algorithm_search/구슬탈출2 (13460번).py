@@ -3,6 +3,7 @@ from typing import Collection
 import collections
 
 def bfs():
+    global count
     deqR = collections.deque()
     deqB = collections.deque()
 
@@ -14,26 +15,25 @@ def bfs():
 
     while len(deqR) > 0:
         rowR,colR = deqR.popleft()
-        rowB,colB = deqB.popleft()
-
+        # rowB,colB = deqB.popleft()
         for i in range(4):
             nrR = rowR + dr[i]
             ncR = colR + dc[i]
 
-            nrB = rowB + dr[i]
-            ncB = colB + dc[i]
-
+            # nrB = rowB + dr[i]
+            # ncB = colB + dc[i]
             if 0 < nrR < N and 0 < ncR < M:
                 if map_list[nrR][ncR] != '#':
                     if visited[nrR][ncR] == False:
                         while map_list[nrR][ncR] != '#':
-                            nrR = nrR + dr[i]
-                            ncR = ncR + dc[i]
-                            visited[nrR][ncB] = True
-                            if map_list[nrR][ncR] == 'O':
-                                break
+                            if visited[nrR][ncR] == False:
+                                nrR = nrR + dr[i]
+                                ncR = ncR + dc[i]
+                                visited[nrR][ncR] = True
+                                if map_list[nrR][ncR] == 'O':
+                                    return
                         deqR.append((nrR-dr[i],ncR-dc[i]))
-                    
+
 
 
 # -------------------------------------
@@ -50,3 +50,4 @@ for row in range(N):
             B_rowcol = (row,col)
 
 bfs()
+print(count)
