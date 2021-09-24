@@ -26,12 +26,14 @@ def bfs():
                 if map_list[nrR][ncR] != '#':
                     if visited[nrR][ncR] == False:
                         while map_list[nrR][ncR] != '#':
-                            if visited[nrR][ncR] == False:
-                                nrR = nrR + dr[i]
-                                ncR = ncR + dc[i]
-                                visited[nrR][ncR] = True
-                                if map_list[nrR][ncR] == 'O':
-                                    return
+                            if map_list[nrR][ncR] == 'O':
+                                return
+                            if map_list[nrR][ncR] == 'B':
+                                break
+                            nrR = nrR + dr[i]
+                            ncR = ncR + dc[i]
+                            visited[nrR][ncR] = True
+
                         deqR.append((nrR-dr[i],ncR-dc[i]))
 
 
