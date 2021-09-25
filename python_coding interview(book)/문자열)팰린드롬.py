@@ -14,7 +14,8 @@ def isPalindrome(words:str):
 # -------------------------------------------------  deque 활용
 def isPalindrome(words:str):
     words.lower()
-    words = re.sub('[^a-z0-9]','',words)
+    
+    words = re.sub('[^a-z0-9]', '',words)
     return words == words[::-1]
 # ------------------------------------------------- 문자열 슬라이싱 활용
 word = list(input())
@@ -27,3 +28,6 @@ if word_list == list(reversed(word_list)):
     print(True)
 else:
     print(False)
+
+# word = input()
+# print(isPalindrome(word))
