@@ -15,13 +15,14 @@ def bfs():
 
     while len(deqR) > 0:
         rowR,colR = deqR.popleft()
-        # rowB,colB = deqB.popleft()
+        rowB,colB = deqB.popleft()
+        
         for i in range(4):
             nrR = rowR + dr[i]
             ncR = colR + dc[i]
 
-            # nrB = rowB + dr[i]
-            # ncB = colB + dc[i]
+            nrB = rowB + dr[i]
+            ncB = colB + dc[i]
             if 0 < nrR < N and 0 < ncR < M:
                 if map_list[nrR][ncR] != '#':
                     if visited[nrR][ncR] == False:
