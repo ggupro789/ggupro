@@ -1,5 +1,4 @@
 from typing import Collection
-
 import collections
 
 def bfs():
@@ -37,8 +36,6 @@ def bfs():
 
                         deqR.append((nrR-dr[i],ncR-dc[i]))
 
-
-
 # -------------------------------------
 N,M = map(int,input().split())
 map_list = [list(input()) for _ in range(N)]
@@ -54,3 +51,8 @@ for row in range(N):
 
 bfs()
 print(count)
+
+
+#--------------------------------------
+# deq 에 한번에 빨간 파란 공을 다 넣는다.
+# 움직이는 함수를 따로 만들어서 벽 부딪칠 때, 서로 만날 때, 먼저 공이 들어갈 때. 고려 해 준다.
