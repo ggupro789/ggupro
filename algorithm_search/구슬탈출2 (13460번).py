@@ -4,8 +4,6 @@ import collections
 def bfs():
     global count
     deq = collections.deque()
-    
-
     deq.append(row_R,col_R,row_B,col_B)
     
 
@@ -18,9 +16,9 @@ def bfs():
         for i in range(4):
             nrR = rowR + dr[i]
             ncR = colR + dc[i]
-
             nrB = rowB + dr[i]
             ncB = colB + dc[i]
+            
             if 0 < nrR < N and 0 < ncR < M:
                 if map_list[nrR][ncR] != '#':
                     if visited[nrR][ncR] == False:
@@ -33,7 +31,7 @@ def bfs():
                             ncR = ncR + dc[i]
                             visited[nrR][ncR] = True
                             
-                        deq.append((nrR-dr[i],ncR-dc[i]))
+                        # deq.append((nrR-dr[i],ncR-dc[i]))
 
 # -------------------------------------
 N,M = map(int,input().split())
@@ -55,3 +53,4 @@ print(count)
 #--------------------------------------
 # deq 에 한번에 빨간 파란 공을 다 넣는다.
 # 움직이는 함수를 따로 만들어서 벽 부딪칠 때, 서로 만날 때, 먼저 공이 들어갈 때. 고려 해 준다.
+# 포기
